@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+        <form method="post" action="http://localhost:3000/upfile" enctype="multipart/form-data">
+		
+        <label for="f1">Choose file to upload</label>
+            <input type="file" id="f1" name="f1" style="display:none;"/><br/> input 必须设置 name 属性，否则数据无法发送<br/>
+            标题：<input type="text" name="title"/><br/><br/><br/>
+			<button type="submit" id="btn-submit">上 传</button>
+
+        </form>
+</body>
+</html>
+<script>
+	function submitUpload() {
+        //获得文件列表，注意这里不是数组，而是对象
+        var fileList = document.getElementById('f1').files;
+        if(!fileList.length){
+            alert('请选择文件');
+            return;
+        }
+        var fd = new FormData();   //构造FormData对象
+        fd.append('title', document.getElementById('title').value);
+
+        //多文件上传需要遍历添加到 fromdata 对象
+        for(var i =0;i<fileList.length;i++){
+            fd.append('f1', fileList[i]);//支持多文件上传
+        }
+
+        var xhr = new XMLHttpRequest();   //创建对象
+        xhr.open('POST', 'http://localhost:3000/', true);
+
+        xhr.send(fd);//发送时  Content-Type默认就是: multipart/form-data; 
+        xhr.onreadystatechange = function () {
+            console.log('state change', xhr.readyState);
+            if (this.readyState == 4 && this.status == 200) {
+                var obj = JSON.parse(xhr.responseText);   //返回值
+                console.log(obj);
+                if(obj.fileUrl.length){
+                    alert('上传成功');
+                }
+            }
+        }
+
+    }
+	//绑定提交事件
+    document.getElementById('btn-submit').addEventListener('click',submitUpload);
+</script>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            width: 100vh;
+            height: 100vh;
+            background: blue;
+        }
+        .content{
+            width: 200px;
+            height: 200px;
+            background: #787877;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 10px;
+        }
+        .wave{
+            width: 200px;
+            height: 200px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+            transform: translate(-50%,-50%);
+        }
+        @keyframes mymove{
+            0%{
+                background: green;
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .wave::after{
+            content: '';
+            display: inline-block;
+            height:300px;
+            width: 300px;
+            background: red;
+            border-radius: 60% 80%;
+            position: absolute;
+			/*改变top修改水波高度*/
+            top: -150px; 
+            left: -50px;
+            /* transform: translate(50px,60px); */
+            animation: mymove 3s linear infinite;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wave"></div>
+    </div>
+</body>
+
+</html>
+<script>
+/*
+
+*/
+function Setcookie (name, value){ 
+    //设置名称为name,值为value的Cookie
+    var expdate = new Date();   //初始化时间
+    expdate.setTime(expdate.getTime() + 30 * 60 * 1000);   //时间单位毫秒
+    document.cookie = name+"="+value+";expires="+expdate.toGMTString()+";path=/";
+ 
+   //即document.cookie= name+"="+value+";path=/";  时间默认为当前会话可以不要，但路径要填写，因为JS的默认路径是当前页，如果不填，此cookie只在当前页面生效！
+}
+//alert(111);
+function aa(){
+Setcookie('li',"123")
+}
+window.addEventListener('beforeunload', aa, false);
+</script>

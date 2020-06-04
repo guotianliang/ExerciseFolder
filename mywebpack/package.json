@@ -1,0 +1,26 @@
+{
+  "name": "mywebpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "css-loader": "^3.5.3",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "@saga-web/base": "^2.1.9",
+    "@saga-web/draw": "^2.1.61",
+    "@saga-web/graphy": "^2.1.34"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js",
+    "build": "webpack-dev-server --devtools --hot --progress"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
