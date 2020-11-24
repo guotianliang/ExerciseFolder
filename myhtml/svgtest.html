@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="tutorial" width="150" height="150"></canvas>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas_code" width="300" height="300"></canvas>
+
+</body>
+
+</html>
+<script>
+    // 在二维码中添加logo
+
+    // function draw(){
+    //     var canvas = document.getElementById('tutorial');
+    //     if (canvas.getContext){
+    //         var ctx = canvas.getContext("2d");
+
+    //         // ctx.fillStyle = "rgb(200,0,0)";
+    //         // ctx.fillRect (10, 10, 55, 50); //x,y,width,height
+
+    //         // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+    //         // ctx.fillRect (30, 30, 55, 50);
+
+    //         // ctx.fillRect(25, 25, 100, 100);
+    //         // ctx.clearRect(45, 45, 60, 60);
+    //         // ctx.strokeRect(50, 50, 50, 50);
+    //             // 基本绘制路径
+    //         // ctx.beginPath();
+    //         // ctx.moveTo(75, 50);
+    //         // ctx.lineTo(100, 75);
+    //         // ctx.lineTo(100, 25);
+    //         // ctx.fill();
+    //             //圆弧
+    //         // ctx.beginPath();
+    //         // ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
+    //         // ctx.moveTo(110, 75);
+    //         // ctx.arc(75, 75, 35, 0, Math.PI, false);   // 口(顺时针)
+    //         // ctx.moveTo(65, 65);
+    //         // ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // 左眼
+    //         // ctx.moveTo(95, 65);
+    //         // ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // 右眼
+    //         // ctx.stroke();
+
+    //         // 填充三角形
+    //         // ctx.beginPath();
+    //         // ctx.moveTo(25, 25);
+    //         // ctx.lineTo(105, 25);
+    //         // ctx.lineTo(25, 105);
+    //         // ctx.fill();
+
+    //         // // 描边三角形
+    //         // ctx.beginPath();
+    //         // ctx.moveTo(125, 125);
+    //         // ctx.lineTo(125, 45);
+    //         // ctx.lineTo(45, 125);
+    //         // ctx.closePath();
+    //         // ctx.stroke();
+
+    //         // for(var i = 0; i < 4; i++){
+    //         //         for(var j = 0; j < 3; j++){
+    //         //             ctx.beginPath();
+    //         //             var x = 25 + j * 50; // x 坐标值
+    //         //             var y = 25 + i * 50; // y 坐标值
+    //         //             var radius = 20; // 圆弧半径
+    //         //             var startAngle = 0; // 开始点
+    //         //             var endAngle = Math.PI + (Math.PI * j) / 2; // 结束点
+    //         //             var anticlockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针
+
+    //         //             ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+
+    //         //             if (i>1){
+    //         //             ctx.fill();
+    //         //             } else {
+    //         //             ctx.stroke();
+    //         //             }
+    //         //         }
+    //         //     }
+
+    //              // 二次贝塞尔曲线
+    //         ctx.beginPath();
+    //         ctx.moveTo(75, 25);
+    //         ctx.quadraticCurveTo(25, 25, 25, 62.5);
+    //         ctx.quadraticCurveTo(25, 100, 50, 100);
+    //         ctx.quadraticCurveTo(50, 120, 30, 125);
+    //         ctx.quadraticCurveTo(60, 120, 65, 100);
+    //         ctx.quadraticCurveTo(125, 100, 125, 62.5);
+    //         ctx.quadraticCurveTo(125, 25, 75, 25);
+    //         ctx.stroke();
+    //         }
+    //   }
+
+    // function draw() {
+    // var canvas = document.getElementById('canvas');
+    //     if (canvas.getContext){
+    //         var ctx = canvas.getContext('2d');
+
+    //         // var rectangle = new Path2D();
+    //         // rectangle.rect(10, 10, 50, 50);
+
+    //         // var circle = new Path2D();
+    //         // circle.moveTo(125, 35);
+    //         // circle.arc(100, 35, 25, 0, 2 * Math.PI);
+
+    //         // ctx.stroke(rectangle);
+    //         // ctx.fill(circle);
+    //             //调色板
+    //         // for (var i=0;i<6;i++){
+    //         //     for (var j=0;j<6;j++){
+    //         //         ctx.fillStyle = 'rgb(' + Math.floor(255-42.5*i) + ',' +
+    //         //                         Math.floor(255-42.5*j) + ',0)';
+    //         //         ctx.fillRect(j*25,i*25,25,25);
+    //         //     }
+    //         // }
+
+    //         // for (var i=0;i<6;i++){
+    //         //     for (var j=0;j<6;j++){
+    //         //         ctx.strokeStyle = 'rgb(0,' + Math.floor(255-42.5*i) + ',' +
+    //         //                         Math.floor(255-42.5*j) + ')';
+    //         //         ctx.beginPath();
+    //         //         ctx.arc(12.5+j*25,12.5+i*25,10,0,Math.PI*2,true);
+    //         //         ctx.stroke();
+    //         //     }
+    //         // }
+
+
+    //         // 创建渐变
+    //         // var radgrad = ctx.createRadialGradient(45,45,10,52,50,30);
+    //         // radgrad.addColorStop(0, '#A7D30C');
+    //         // radgrad.addColorStop(0.9, '#019F62');
+    //         // radgrad.addColorStop(1, 'rgba(1,159,98,0)');
+
+    //         // var radgrad2 = ctx.createRadialGradient(105,105,20,112,120,50);
+    //         // radgrad2.addColorStop(0, '#FF5F98');
+    //         // radgrad2.addColorStop(0.75, '#FF0188');
+    //         // radgrad2.addColorStop(1, 'rgba(255,1,136,0)');
+
+    //         // var radgrad3 = ctx.createRadialGradient(95,15,15,102,20,40);
+    //         // radgrad3.addColorStop(0, '#00C9FF');
+    //         // radgrad3.addColorStop(0.8, '#00B5E2');
+    //         // radgrad3.addColorStop(1, 'rgba(0,201,255,0)');
+
+    //         // var radgrad4 = ctx.createRadialGradient(0,150,50,0,140,90);
+    //         // radgrad4.addColorStop(0, '#F4F201');
+    //         // radgrad4.addColorStop(0.8, '#E4C700');
+    //         // radgrad4.addColorStop(1, 'rgba(228,199,0,0)');
+
+    //         // // 画图形
+    //         // // ctx.beginPath();
+    //         // ctx.fillStyle = radgrad4;
+    //         // ctx.fillRect(0,0,150,150);
+    //         // ctx.fillStyle = radgrad3;
+    //         // ctx.fillRect(0,0,150,150);
+    //         // ctx.fillStyle = radgrad2;
+    //         // ctx.fillRect(0,0,150,150);
+    //         // ctx.fillStyle = radgrad;
+    //         // ctx.fillRect(0,0,150,150);
+    //         // ctx.stroke();
+
+    //         // var ctx = document.getElementById('canvas').getContext('2d');
+    //         var img = new Image();
+    //         img.onload = function(){
+    //             ctx.drawImage(img,0,0,150,150);
+    //             ctx.beginPath();
+    //             ctx.moveTo(30,96);
+    //             ctx.lineTo(70,66);
+    //             ctx.lineTo(103,76);
+    //             ctx.lineTo(170,15);
+    //             ctx.stroke();
+    //         }
+    //         img.src = 'https://dss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=756694511,1216455890&fm=202&mola=new&crop=v1';
+    //     }
+    // }
+    //   draw();
+
+
+
+    //     var sun = new Image();
+    // var moon = new Image();
+    // var earth = new Image();
+    // function init(){
+    //   sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
+    //   moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
+    //   earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
+    //   window.requestAnimationFrame(draw);
+    // }
+
+    // function draw() {
+    //   var ctx = document.getElementById('canvas').getContext('2d');
+
+    //   ctx.globalCompositeOperation = 'destination-over';
+    //   ctx.clearRect(0,0,300,300); // clear canvas
+
+    //   ctx.fillStyle = 'rgba(0,0,0,0.4)';
+    //   ctx.strokeStyle = 'rgba(0,153,255,0.4)';
+    //   ctx.save();
+    //   ctx.translate(150,150);
+
+    //   // Earth
+    //   var time = new Date();
+    //   ctx.rotate( ((2*Math.PI)/60)*time.getSeconds() + ((2*Math.PI)/60000)*time.getMilliseconds() );
+    //   ctx.translate(105,0);
+    //   ctx.fillRect(0,-12,50,24); // Shadow
+    //   ctx.drawImage(earth,-12,-12);
+
+    //   // Moon
+    //   ctx.save();
+    //   ctx.rotate( ((2*Math.PI)/6)*time.getSeconds() + ((2*Math.PI)/6000)*time.getMilliseconds() );
+    //   ctx.translate(0,28.5);
+    //   ctx.drawImage(moon,-3.5,-3.5);
+    //   ctx.restore();
+
+    //   ctx.restore();
+
+    //   ctx.beginPath();
+    //   ctx.arc(150,150,105,0,Math.PI*2,false); // Earth orbit
+    //   ctx.stroke();
+
+    //   ctx.drawImage(sun,0,0,300,300);
+    //   canvas.addEventListener('click',function(e){
+
+    //     console.log(e);
+    // //   if (!running) {
+    // //     raf = window.requestAnimationFrame(draw);
+    // //     running = true;
+    // //   }
+    //     });
+    //   window.requestAnimationFrame(draw);
+    // }
+
+    // init()
+
+
+    // var canvas = document.getElementById("canvas");
+    // var ctx = canvas.getContext("2d");
+
+    // ctx.beginPath();
+    // // ctx.arc(70, 80, 10, 0, 2 * Math.PI, false);
+    // for(var i =1;i<10;i++){
+    //     ctx.rect(50, 80, 10, 10);
+    //     ctx.translate(15, 0)
+    //     ctx.fill();
+    // }
+
+    // canvas.addEventListener("click", function(event){
+    //     console.log(event,"event")
+    //     if(event.region) {
+    //         alert("hit region: " + event.region);
+    //     }
+    // });
+
+
+    // const canvas = document.getElementById('canvas')
+    // const ctx = canvas.getContext('2d')
+    // const path1 = new Path2D();
+    // path1.rect(10, 10, 100, 100);
+    // ctx.fill(path1)
+    // const path2 = new Path2D();
+    // path2.moveTo(220, 60);
+    // path2.arc(170, 60, 50, 0, 2 * Math.PI);
+    // ctx.stroke(path2)
+    // canvas.addEventListener('click', function (e) {
+    //     console.log(ctx.isPointInPath(path1, e.clientX, e.clientY))
+    //     console.log(ctx.isPointInPath(path2, e.clientX, e.clientY))
+    // })
+    arr = [
+        {x:10, y:10, width:100, height:100},
+        {x:110, y:110, width:100, height:100}
+    ];
+
+    cvs = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    cvs.addEventListener('click', function(e){
+        p = getEventPosition(e);
+        let aa = draw(p);
+        console.log(p,aa,ctx.isPointInPath(p.x, p.y))
+    }, false);
+    arr.length=10;
+    function draw(p){
+        var who = [];//保存点击事件包含图形的index值
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        for(var i =1;i<10;i++){
+            ctx.beginPath();
+            ctx.rect(50, 80, 10, 10);
+            ctx.translate(15, 0)
+            ctx.stroke();
+            if(p && ctx.isPointInPath(p.x, p.y)){
+            //如果传入了事件坐标，就用isPointInPath判断一下
+            //如果当前环境覆盖了该坐标，就将图形的index放到数组里
+                who.push(i);
+                ctx.fill("#cccccc");
+            }
+        }
+        // arr.forEach(function(v, i){
+        //     ctx.beginPath();
+        //     ctx.rect(v.x, v.y, v.width, v.height);
+        //     ctx.stroke();
+        //     if(p && ctx.isPointInPath(p.x, p.y)){
+        //     //如果传入了事件坐标，就用isPointInPath判断一下
+        //     //如果当前环境覆盖了该坐标，就将图形的index放到数组里
+        //         who.push(i);
+        //         ctx.fill();
+        //     }
+        // });
+        //根据数组中的index值，可以到arr数组中找到相应的元素。
+        return who;
+    }
+
+    function getEventPosition(ev){
+        var x, y;
+        if (ev.layerX || ev.layerX == 0) {
+            x = ev.layerX;
+            y = ev.layerY;
+        } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+            x = ev.offsetX;
+            y = ev.offsetY;
+        }
+        return {x: x, y: y};
+    }
+    // canvas绘制图形验证码
+    (function(){
+        function Gcode(el, option) {
+            this.el = typeof el === 'string' ? document.querySelector(el) : el;
+            this.option = option;
+            this.init();
+        }
+        Gcode.prototype = {
+            constructor: Gcode,
+            init: function() {
+                if(this.el.getContext) {
+                    isSupportCanvas = true;
+                    var ctx = this.el.getContext('2d'),
+                    // 设置画布宽高
+                    cw = this.el.width = this.option.width || 200,
+                    ch = this.el.height = this.option.height || 40,
+                    textLen = this.option.textLen || 4,
+                    lineNum = this.option.lineNum || 4;
+                    var text = this.randomText(textLen);
+
+                    this.onClick(ctx, textLen, lineNum, cw, ch);
+                    this.drawLine(ctx, lineNum, cw, ch);
+                    this.drawText(ctx, text, ch);
+                }
+            },
+            onClick: function(ctx, textLen, lineNum, cw, ch) {
+                var _ = this;
+                this.el.addEventListener('click', function(){
+                    text = _.randomText(textLen);
+                    _.drawLine(ctx, lineNum, cw, ch);
+                    _.drawText(ctx, text, ch);
+                }, false)
+            },
+            // 画干扰线
+            drawLine: function(ctx, lineNum, maxW, maxH) {
+                ctx.clearRect(0, 0, maxW, maxH);
+                for(var i=0; i < lineNum; i++) {
+                    var dx1 = Math.random()* maxW,
+                        dy1 = Math.random()* maxH,
+                        dx2 = Math.random()* maxW,
+                        dy2 = Math.random()* maxH;
+                    ctx.strokeStyle = 'rgb(' + 255*Math.random() + ',' + 255*Math.random() + ',' + 255*Math.random() + ')';
+                    ctx.beginPath();
+                    ctx.moveTo(dx1, dy1);
+                    ctx.lineTo(dx2, dy2);
+                    ctx.stroke();
+                }
+            },
+            // 画文字
+            drawText: function(ctx, text, maxH) {
+                var len = text.length;
+                for(var i=0; i < len; i++) {
+                    var dx = 30 * Math.random() + 30* i,
+                        dy = Math.random()* 5 + maxH/2;
+                    ctx.fillStyle = 'rgb(' + 255*Math.random() + ',' + 255*Math.random() + ',' + 255*Math.random() + ')';
+                    ctx.font = '30px Helvetica';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(text[i], dx, dy);
+                }
+            },
+            // 生成指定个数的随机文字
+            randomText: function(len) {
+                var source = ['a', 'b', 'c', 'd', 'e',
+                'f', 'g', 'h', 'i', 'j',
+                'k', 'l', 'm', 'o', 'p',
+                'q', 'r', 's', 't', 'u',
+                'v', 'w', 'x', 'y', 'z'];
+                var result = [];
+                var sourceLen = source.length;
+                for(var i=0; i< len; i++) {
+                    var text = this.generateUniqueText(source, result, sourceLen);
+                    result.push(text)
+                }
+                return result.join('')
+            },
+            // 生成唯一文字
+            generateUniqueText: function(source, hasList, limit) {
+                var text = source[Math.floor(Math.random()*limit)];
+                if(hasList.indexOf(text) > -1) {
+                    return this.generateUniqueText(source, hasList, limit)
+                }else {
+                    return text
+                }
+            }
+        }
+        new Gcode('#canvas_code', {
+            lineNum: 6
+        })
+    })();
+</script>

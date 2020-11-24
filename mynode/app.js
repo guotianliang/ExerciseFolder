@@ -37,6 +37,7 @@ app.use((ctx) => {
             var path = file.path.replace(/\\/g, '/');
             var fname = file.name; //原文件名称
             var nextPath = '';
+			console.log(fname);
             if (file.size > 0 && path) {
                 //得到扩展名
                 var extArr = fname.split('.');

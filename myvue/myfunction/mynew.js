@@ -10,7 +10,7 @@
 function myNew(foo, ...args) {
     // 创建新对象,并继承构造方法的prototype属性, 这一步是为了把obj挂原型链上, 相当于obj.__proto__ = Foo.prototype
     let obj = Object.create(foo.prototype)
-
+    console.log(obj,foo.prototype)
     // 执行构造方法, 并为其绑定新this, 这一步是为了让构造方法能进行this.name = name之类的操作, args是构造方法的入参, 因为这里用myNew模拟, 所以入参从myNew传入
     let result = foo.apply(obj, args)
 
@@ -22,6 +22,7 @@ function myNew(foo, ...args) {
   function Foo(name) {
     this.name = name
   }
-  const newObj = myNew(Foo, 'zhangsan')
+  const newObj = new Foo("hahah");
+  // const newObj = myNew(Foo, 'zhangsan')
   console.log(newObj)                 // Foo {name: "zhangsan"}
   console.log(newObj instanceof Foo)

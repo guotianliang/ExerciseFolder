@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <div id="div-1" style="border:5px solid #000; width:50%; height: 100px; margin: 0 auto;"></div>
+    <div id="div-2" style="margin: 50px; padding:80px; border: 20px solid">
+        <div id="div-3" style="margin:15px">hello, world</div>
+    </div> -->
+    <div>
+        <div style="float:left">hello, world</div>
+        <div style="float:right"><p style="width:100px"></p></div>
+        <div style="margin:0 100px;">123</div>
+    </div>
+</head>
+<body>
+
+</body>
+<script>
+function Foo(property_num,element_num) {
+    //添加可索引属性
+    for (let i = 0; i < element_num; i++) {
+        this[i] = `element${i}`
+    }
+    //添加常规属性
+    for (let i = 0; i < property_num; i++) {
+        let ppt = `property${i}`
+        this[ppt] = ppt
+    }
+}
+var bar = new Foo(10,10);
+var hah = new Foo(20,10);
+
+function Task(){
+    this.tasks = [];
+}
+//添加一个任务
+Task.prototype.addTask = function(task){
+    this.tasks.push(task);
+};
+//每次重绘前取一个task执行
+Task.prototype.draw = function(){
+    var that = this;
+    window.requestAnimationFrame(function(){
+        var tasks = that.tasks;
+        if(tasks.length){
+            var task = tasks.shift();
+            task();
+        }
+        window.requestAnimationFrame(function(){that.draw.call(that)});
+    });
+};
+
+var aTask = null;
+var mapTask = {
+    get: function(){
+        if(!aTask){
+            aTask = new Task();
+            aTask.draw();
+        }
+        return aTask;
+    },
+    add: function(task){
+        mapTask.get().addTask(task);
+    }
+};
+// 优化前代码
+ function updateHouses(houses){
+    var remainMultipleMarkers = null;
+    var housesFilter = null;
+        housesFilter = filterData.filterHouse(houses);
+    remainMultipleMarkers = filterData.removeOldHouses(housesFilter.remainsHouses);
+    housesFilter.newHouses = housesFilter.newHouses.concat(remainMultipleMarkers);
+    filterData.addNewHouses(housesFilter.newHouses);
+}
+// 优化后代码
+mapTask.add(function(){
+    housesFilter = filterData.filterHouse(houses);
+    remainMultipleMarkers = filterData.removeOldHouses(housesFilter.remainsHouses);
+});
+mapTask.add(function(){
+    housesFilter.newHouses = housesFilter.newHouses.concat(remainMultipleMarkers);
+    filterData.addNewHouses(housesFilter.newHouses);
+});
+
+// let arr =[
+//     {a:1,selected:false,isfreeze:false},
+//     {a:2},
+//     {a:3},
+//     {a:4}
+// ]
+// function selectedIndex(value=[]){
+//     // 做标记 [0,1]
+// }
+// function moveUp(){
+//     let index = 0;
+//     let targetArr=[1,2]
+//     while(targetArr.includes(index)){
+//         arr[index].isfreeze=true;
+//         index++
+//     }
+//     targetArr = targetArr.map(item => {
+//         if(!arr[item].isfreeze){
+//             // move
+//             let cache = arr[item];
+//             arr[item] = arr[item-1];
+//             arr[item-1] =cache;
+//             item=item-1;
+//         }
+//         return item
+//     });
+//     console.log(targetArr,60)
+//     this.data=arr;
+// }
+// function moveDown(){
+
+// }
+</script>
+</html>

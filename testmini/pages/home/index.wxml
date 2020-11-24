@@ -1,0 +1,40 @@
+<loading id="loading"/>
+<button  bindtap="chooseVideo">上传</button>
+<header><text slot="content" class="header-title">测试</text></header>
+
+  <view class="chartcontent">
+    <!-- Y轴 -->
+    <view class="charty">
+      <text>27</text>
+      <text>25</text>
+      <text>22</text>
+    </view>
+    <!-- X轴 -->
+    <view class="chartx">
+      <text>22</text>
+    </view>
+    <!-- 中间部分区域 -->
+    <scroll-view scroll-x="true" style="height: 100%">
+      <view class="chartmain">
+        <view class="mian_item">
+          <movable-area style="height: 100%;width: 100%">
+            <view></view>
+            <!-- 中间部分点 -->
+            <movable-view direction="vertical" data-index="111" x="5" style="height: 100px; width: 20px; background: #007aff;" bindchange="onChange">
+            23
+            </movable-view>
+          </movable-area>
+        </view>
+        <view class="mian_item">
+          <movable-area style="height: 100%;width: 100%">
+            <view></view>
+            <!-- 中间部分点 -->
+            <movable-view direction="vertical" data-index="111" x="5" style="height: 100px; width: 20px; background: #007aff;" bindchange="onChange">
+            23
+            </movable-view>
+          </movable-area>
+        </view>
+    </view>
+  </scroll-view>
+  <!-- <image src="../../images/guotianliang.jpg" alt="" show-menu-by-longpress/> -->
+  </view>

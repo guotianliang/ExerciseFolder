@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <modal-button></modal-button>
+        <anchored-heading :level="2">123</anchored-heading>
+    </div>
+</body>
+</html>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.0/vue.runtime.global.js"></script> -->
+<script src="https://unpkg.com/vue@3.0.0"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.0/vue.runtime.esm-browser.js"></script> -->
+<script type="module">
+    const app = Vue.createApp({});
+
+    const count = Vue.ref(0)
+    console.log(count.value+1)
+    app.component('modal-button', {
+        template: `
+            <button @click="modalOpen = true">
+                Open full screen modal! (With teleport!)
+            </button>
+
+            <teleport to="body">
+                <div v-if="modalOpen" class="modal">
+                    <div>
+                    I'm a teleported modal!
+                    (My parent is "body")
+                    <button @click="modalOpen = false">
+                        Close
+                    </button>
+                    </div>
+                </div>
+            </teleport>
+        `,
+        data() {
+            return {
+            modalOpen: false
+            }
+        }
+    })
+    app.component('anchored-heading', {
+        render() {
+            const { h } = Vue
+            return h(
+            'h' + this.level, // tag name
+            {}, // props/attributes
+            this.$slots.default() // array of children
+            )
+        },
+        props: {
+            level: {
+                type: Number,
+                required: true
+            }
+        }
+        })
+    app.mount('#app')
+
+</script>

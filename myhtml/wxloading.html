@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 10px;
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        #box>div{
+      display: inline-block;
+      background-color:red;
+      height: 100%;
+      width: 1px;
+      margin-right:2px;
+      animation: dance 1s infinite;
+    }
+    @keyframes dance{
+        0%, 40%, 100%{
+        transform: scaleY(0.4);
+        transform-origin: center 100%;
+        }
+        20%{
+        transform: scaleY(1);
+        }
+    }
+    #box>div:nth-child(2) {
+      animation-delay: -0.4s;
+    }
+    #box>div:nth-child(3) {
+      animation-delay: -0.6s;
+    }
+    #box>div:nth-child(4) {
+      animation-delay: -0.5s;
+    }
+    #box>div:nth-child(5) {
+      animation-delay: -0.2s;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <span>拼命加载中...</span>
+    </div>
+</body>
+</html>
