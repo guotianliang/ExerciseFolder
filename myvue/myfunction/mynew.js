@@ -26,3 +26,17 @@ function myNew(foo, ...args) {
   // const newObj = myNew(Foo, 'zhangsan')
   console.log(newObj)                 // Foo {name: "zhangsan"}
   console.log(newObj instanceof Foo)
+
+
+  function newFactory(ctor, ...args) {
+    if(typeof ctor !== 'function'){
+      throw 'newOperator function the first param must be a function';
+    }
+    let obj = new Object();
+    obj.__proto__ = Object.create(ctor.prototype);
+    let res = ctor.apply(obj, ...args);
+
+    let isObject = typeof res === 'object' && typeof res !== null;
+    let isFunction = typoof res === 'function';
+    return isObect || isFunction ? res : obj;
+};

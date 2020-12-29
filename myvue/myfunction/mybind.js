@@ -8,6 +8,7 @@ Function.prototype.myBind = function (thisArg, ...args) {
     var self = this
     // new优先级
     var fbound = function () {
+        console.log(Array.prototype.slice.call(arguments))
         self.apply(this instanceof self ? this : thisArg, args.concat(Array.prototype.slice.call(arguments)))
     }
     // 继承原型上的属性和方法
