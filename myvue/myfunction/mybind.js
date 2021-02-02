@@ -23,4 +23,5 @@ function foo() {
 }
 
 // fn2.myBind(obj, '456')();
+
 foo.myBind(obj, 'a', 'b', 'c')();
