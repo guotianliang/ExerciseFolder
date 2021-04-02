@@ -10,5 +10,8 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "dependencies": {
+        "jstracker": "^1.0.3"
     }
 }
