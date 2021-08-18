@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="audiobox" style="width: 100;height: 100;">
+    <audio muted id="testAudio" controls="controls" src="http://ting6.yymp3.net:82/new25/guojing7/4.mp3" autoplay="autoplay"></audio>
+  </div>
+  <div id="error">
+    <button id="testButton">开启消息提醒</button>
+    <button id="testAdd">消息来了</button>
+  </div>
+</body>
+</html>
+<script>
+  let promise=testAudio.play();
+  testButton.addEventListener("click",()=>{
+    testAudio.pasue();
+  })
+  // 在你需要执行的地方  执行play
+  testAdd.addEventListener("click",()=>{
+    testAudio.play();
+  })
+  // document.addEventListener("mouseover",()=>{
+  //   testAudio.play();
+  // })
+  // let testAudio1
+  // testAdd.addEventListener("click",()=>{
+  //   testAudio1=document.createElement("audio")
+  //   testAudio1.setAttribute("id","testAudio1");
+  //   testAudio1.setAttribute("autoplay","autoplay");
+  //   testAudio1.setAttribute("controls","controls");
+  //   testAudio1.setAttribute("src","http://ting6.yymp3.net:82/new25/guojing7/4.mp3");
+  //   audiobox.appendChild(testAudio1)
+  // })
+  // function aa(){
+  //   testAudio.addEventListener("canplay",()=>{
+  //     setTimeout(() => {
+  //       testAudio.play();
+  //     }, 500);
+  //   })
+  // }
+  
+</script>

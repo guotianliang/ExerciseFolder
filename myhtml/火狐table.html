@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .aaa{
+      width:40px;
+      overflow:hidden;white-space: nowrap;margin: 0px 0px 0px 3px;
+    }
+    .aaa:after{ content: "…"; }
+  </style>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="message.msg" @input="changeInput">
+  <component-a></component-a>
+ <!-- <template>
+  <el-table
+    :data="tableData"
+    height="250"
+    border
+    style="width: 100%">
+    <el-table-column
+      v-for="column in columns"
+      :prop="column.prop"
+      :label="column.label"
+      :show-overflow-tooltip="true"
+      width="100">
+      <template slot-scope="scope">
+        <div
+          v-if="column.prop === 'date'"
+        >
+          {{ scope.row.date }}
+        </div>
+        <div
+          v-if="column.prop === 'name'"
+          class="aaa"
+        >
+          {{ scope.row.name }}
+        </div>
+        <div
+          v-if="column.prop === 'address'"
+          class="title-container  text-clamp-1"
+        >
+          {{ scope.row.address }}
+        </div>
+      </template>
+    </el-table-column>
+    </el-table-column>
+  </el-table>
+</template>  -->
+</div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.0/index.js"></script> -->
+<script>
+
+
+var ComponentA = {
+  data:{},
+  created() {
+    console.log(this.foo,"foo")
+  },
+  inject:['foo'],
+  template:`<div>123{{foo.value}}</div>`
+}
+let msg= {
+  value:"aa"
+}
+Object.defineProperty(msg,'value',{
+  get: function () {
+	    return this._value||"aa";
+    },
+  set(val){
+    console.log(234)
+    this._value="5555"
+  }
+})
+
+var app = new Vue({
+  el: '#app',
+  provide(){
+    return {foo:msg}
+    
+  },
+  created() {
+    console.log(this.message,msg)
+  },
+  data: {
+    message: {
+      msg:"message"
+    }
+  },
+  methods: {
+    changeInput(value){
+      msg.value="444444444444"
+      this.$forceUpdate();
+    }
+  },
+  components: {
+    'component-a': ComponentA,
+    // 'component-b': ComponentB
+  }
+})
+//   var Main = {
+//     data() {
+//       return {
+//         columns:[
+//           {
+//             prop:"date",
+//             label:"日期",
+//             width:"180"
+//           },
+//           {
+//             prop:"name",
+//             label:"姓名",
+//             width:"180"
+//           },
+//           {
+//             prop:"address",
+//             label:"地址",
+//             width:"address"
+//           }
+//         ],
+//         tableData: [{
+//           date: '2016-05-03',
+//           name: '王小虎aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }, {
+//           date: '2016-05-02',
+//           name: '王小虎',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }, {
+//           date: '2016-05-04',
+//           name: '王小虎',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }, {
+//           date: '2016-05-01',
+//           name: '王小虎',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }, {
+//           date: '2016-05-08',
+//           name: '王小虎',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }, {
+//           date: '2016-05-06',
+//           name: '王小虎',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }, {
+//           date: '2016-05-07',
+//           name: '王小虎',
+//           address: '上海市普陀区金沙江路 1518 弄'
+//         }]
+//       }
+//     }
+//   }
+// var Ctor = Vue.extend(Main)
+// let vue = new Ctor({
+//   data:{
+//     msg:1
+//   },
+//   component:{Parent}
+// }).$mount('#app')
+
+</script>
+</html>

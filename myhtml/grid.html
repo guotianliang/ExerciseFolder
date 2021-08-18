@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .aa .list{
+      height: 500px;
+      display: grid;
+      gap: 30px;
+      /* grid-template-columns: 80px auto 100px; */
+      /* grid-template-columns: repeat(24, 40px [col-start]); */
+      /* grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 25% 100px auto 60px; */
+      /* grid-template-columns: 1fr 1fr 1fr; */
+    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+    grid-template: 
+        "葡萄 葡萄 葡萄" 1fr 
+        "龙虾 养鱼 养鱼" 1fr 
+        "龙虾 养鱼 养鱼" 1fr 
+        "西瓜 西瓜 西瓜" 1fr
+        /1fr 1fr 1fr;
+    }
+    .putao { grid-area: 葡萄; }
+    .longxia { grid-area: 龙虾; }
+    .yangyu { grid-area: 养鱼; }
+    .xigua { grid-area: 西瓜; }
+    .aa .list div{
+      /* width: 100px; */
+      /* height: 100px; */
+      background: skyblue;
+    }
+    .list-bb{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .list-bb div{
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      background: skyblue;
+    }
+    .list-bb::after{
+      content: '';
+      /* display: flex; */
+      flex:1;
+    }
+  </style>
+</head>
+<body>
+  <div class="list list-bb">
+    <div class="putao"></div>
+    <div class="longxia"></div>
+    <div class="yangyu"></div>
+    <div class="xigua"></div>
+    <div class="xigua"></div>
+    <div class="xigua"></div>
+    <div class="xigua"></div>
+  </div>
+</body>
+</html>
