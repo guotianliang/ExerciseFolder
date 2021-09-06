@@ -259,3 +259,27 @@ Promise.all = function (arr) {
         }
     })
 }
+const list=[]
+const tree={"n":"博瑞开源","t":"o","fn":"/博瑞开源","id":1,"l":0,"items":[{"n":"专家库","t":"o","fn":"/博瑞开源/专家库","id":2,"l":1},{"n":"分公司","t":"o","fn":"/博瑞开源/分公司","id":3,"l":1,"items":[{"n":"业务部","t":"o","fn":"/博瑞开源/分公司/业务部","id":7,"l":2,"items":[{"n":"业务一部","t":"o","fn":"/博瑞开源/分公司/业务部/业务一部","id":8,"l":3},{"n":"业务二部","t":"o","fn":"/博瑞开源/分公司/业务部/业务二部","id":9,"l":3}]},{"n":"技术部","t":"o","fn":"/博瑞开源/分公司/技术部","id":4,"l":2,"items":[{"n":"技术一部","t":"o","fn":"/博瑞开源/分公司/技术部/技术一部","id":5,"l":3},{"n":"技术二部","t":"o","fn":"/博瑞开源/分公司/技术部/技术二部","id":6,"l":3}]}]}]}
+// tree 树
+// children 树的子
+// id 树对应的id
+// name 要提取的元素
+function treeFn(tree,id,children,name){
+  let target;
+  tree.forEach()
+  if(tree.id===id){
+    target =  tree[name]
+  }
+  if(tree[children]){
+    tree[children].forEach(v => {
+      if(target){
+        return
+      }
+      target=treeFn([v],children,id,name)
+      
+    });
+  }
+  return target
+}
+let aa = treeFn(tree,8,'items','n')
