@@ -5,16 +5,81 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    #root{
+      width: 100%;
+      height: 600px;
+      overflow: auto;
+    }
+
+  </style>
 </head>
 <body>
-  
+  <!-- 外层盒子 -->
+  <div id="root">
+  </div>
 </body>
 <script src="./myfunction/虚拟树滚动.js"></script>
+
 <script>
-  let treeCopy = [];
-  console.time("flatTree")
-  treeCopy = flatTree(tree,treeCopy)
-  console.timeEnd("flatTree")
-  document.write(JSON.stringify(treeCopy))
+  // let treeCopy = [];
+  // console.time("flatTree")
+  // treeCopy = flatTree(tree,treeCopy)
+  // console.timeEnd("flatTree")
+  // document.write(JSON.stringify(treeCopy))
+  function creatDom(){
+    return document.createElement('div')
+  }
+
+  class Virtual{
+    constructor(root,initNum=50,initHeight=80,data=[]){
+      this.scrollEl = null
+      this.initHeight= initHeight
+      this.initNum=initNum
+      this.startIndex=1
+      this.endIndex=1
+      this.parentEl= typeof root === 'string'?document.getElementById(root):root
+      this.creatScrollEl()
+      this.creatScrollChildEl()
+
+      this.scrollEl.append(this.scroolChildEl)
+      this.parentEl.append(this.scrollEl)
+      this.parentEl.addEventListener('scroll',function(ev){
+        let scrollTop = ev.target.scrollTop
+        let start=scrollTop-this.initHeight*10<=0
+        let end =this.initHeight * data.length-this.initHeight*(this.initNum+10)<=scrollTop
+        this.startIndex=start?1:end?data.length-initNum:Math.floor(scrollTop/this.initHeight)-10
+        this.scroolChildEl.style.top =(start?0:end?this.initHeight*(data.length-this.initNum):ev.target.scrollTop) +'px'
+        this.updatedChild()
+      }.bind(this))
+
+    }
+    creatScrollEl(){
+      let div = creatDom()
+      div.setAttribute('id','scroll-dom')
+      div.style.position = 'relative'
+      div.style.overflow = 'hidden'
+      div.style.height = this.initHeight * data.length + 'px'
+      this.scrollEl=div
+    }
+    creatScrollChildEl(){
+      this.scroolChildEl=creatDom()
+      this.scroolChildEl.style.position = 'absolute'
+      for(let i=this.startIndex;i<=this.initNum;i++){
+        let div=creatDom()
+        div.innerHTML = i;
+        div.style.height = this.initHeight + 'px'
+        this.scroolChildEl.append(div)
+      }
+    }
+    updatedChild() {
+      this.scroolChildEl.childNodes.forEach((v,index)=>{
+        v.innerHTML=this.startIndex+index
+      })
+    }
+  }
+  let data=[]
+  data.length=500
+  new Virtual('root',100,100,data)
 </script>
 </html>

@@ -12,6 +12,8 @@
         }
     },
     "dependencies": {
-        "jstracker": "^1.0.3"
+        "ffmpeg": "0.0.4",
+        "jstracker": "^1.0.3",
+        "shelljs": "^0.8.5"
     }
 }

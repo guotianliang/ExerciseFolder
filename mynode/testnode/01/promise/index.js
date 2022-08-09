@@ -1,6 +1,6 @@
 function fun(arg, callback) {
     try {
-        aaa()
+        // aaa()
         callback(null, 'result')
     } catch (error) {
         callback(error)
@@ -15,6 +15,7 @@ fun('./index1.js', (err, data) => {console.log(err ? 'read err' : data)})
 const promisify = require('./promisify')
 // const { promisify } = require('util')
 const promise = promisify(fun)
+console.log(promise,"promise")
 // promise('./index2.js')
 //     .then(data => {
 //         console.log(data)

@@ -40,3 +40,100 @@ function myNew(foo, ...args) {
     let isFunction = typoof res === 'function';
     return isObect || isFunction ? res : obj;
 };
+new Promise(reslove=>{
+  reslove(1)
+});
+
+class myPromise{
+  constructor(cb){
+    this.status='PENDING'
+    this.resloveFnList=[];
+    this.rejectFnList=[];
+
+    const reslove=function(value){
+      const run=()=>{
+        if(this.status==='PENDING'){
+          this.status='FULFILLED'
+          this.value=value
+          while(this.resloveFnList.length) {    
+            const callback = this.resloveFnList.shift()
+            callback(value)
+          }
+        }
+      }
+      setTimeout(run)
+    };
+    const reject=function(value){
+      if(this.status==='PENDING'){
+        this.status='REJECTED'
+        while(this.rejectFnList.length) {
+          const callback = this.rejectFnList.shift()
+          callback(value)
+        }
+      }
+    };
+    cb(reslove,reject)
+  }
+  then(resolveFn,rejectFn){
+    typeof resolveFn !== 'function' ? resolveFn = value => value : null
+    typeof rejectFn !== 'function' ? rejectFn = reason => {
+      throw new Error(reason instanceof Error? reason.message:reason);
+    } : null
+
+    return new myPromise((reslove,reject)=>{
+
+      
+    let fulfilledFn=value=>{
+      let x = resolveFn(value)
+      x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
+    }
+    const rejectedFn  = error => {
+      try {
+        let x = rejectFn(error)
+        x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
+      } catch (error) {
+        reject(error)
+      }
+    }
+    switch (this._status) {
+      // 当状态为pending时,把then回调push进resolve/reject执行队列,等待执行
+      case PENDING:
+        this.resloveFnList.push(fulfilledFn)
+        this.rejectFnList.push(rejectedFn)
+        break;
+      // 当状态已经变为resolve/reject时,直接执行then回调
+      case FULFILLED:
+        fulfilledFn(this._value)    // this._value是上一个then回调return的值(见完整版代码)
+        break;
+      case REJECTED:
+        rejectedFn(this._value)
+        break;
+    }
+
+    });
+  }
+//静态的all方法
+static all(promiseArr) {
+  let index = 0
+  let result = []
+  return new MyPromise((resolve, reject) => {
+    promiseArr.forEach((p, i) => {
+      //Promise.resolve(p)用于处理传入值不为Promise的情况
+      MyPromise.resolve(p).then(
+        val => {
+          index++
+          result[i] = val
+          //所有then执行后, resolve结果
+          if(index === promiseArr.length) {
+            resolve(result)
+          }
+        },
+        err => {
+          //有一个Promise被reject时，MyPromise的状态变为reject
+          reject(err)
+        }
+      )
+    })
+  })
+}
+}

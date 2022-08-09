@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,html{
+      height: 100%;
+      width: 100%;
+    }
+    div{
+      width: 200px;
+      height: 200px;
+      background: red;
+      position: absolute;
+      top:0;
+      left: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+<script>
+let root = document.getElementById("root")
+let canDrag = false
+let initLeft=0;
+let initTop=0;
+root.addEventListener('mousedown',(e)=>{
+  initLeft=0;
+  initTop=0;
+  canDrag=true
+  let {x,y} = getPosition(e)
+  initLeft = x-root.offsetLeft
+  initTop = y-root.offsetTop
+  
+  document.addEventListener('mousemove',move)
+})
+
+root.addEventListener('mouseup',(e)=>{
+  canDrag=false
+  document.removeEventListener("mousemove",move)
+})
+function move(e){
+    let {x,y} = getPosition(e)
+    if(!canDrag){
+      return
+    }
+    if(x>=document.documentElement.clientWidth-root.offsetWidth){
+      return 
+    }
+    root.style.top= y+'px'
+    root.style.left= x+'px'
+}
+
+function getPosition(event){
+  let left = event.clientX -initLeft
+  let right = event.clientY-initTop
+  return {
+    x:left,
+    y:right
+  }
+}
+
+</script>

@@ -29,7 +29,7 @@ function compose(middlewares){
             }
             return Promise.resolve(
                 fn(function next(){
-                    return dispatch(i + 1)
+                  return dispatch(i + 1)
                 })
             )
         }

@@ -1,0 +1,1 @@
+// define(id?: String, dependencies?: String[], factory: Function|Object)

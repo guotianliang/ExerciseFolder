@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div class="table_scroll">
+    <div class="header_top">
+        <div>
+            <table style="width:100%">
+                <thead class="header">
+                    <tr class="thead_tr">
+                        <th rowspan="2">机构</th>
+                        <th rowspan="2" class="th_1" v-if="fromLevel == '1' || fromLevel=='2'">目标完成度</th>
+                        <th rowspan="2" :class="(fromLevel == '1' || fromLevel=='2')?'th_2':'th_2'">保费合计</th>
+                        <th rowspan="2" :class="(fromLevel == '1' || fromLevel=='2')?'th_3':'th_3'">今日签单保费</th>
+                        <th colspan='4'><span>截止昨日（万元）</span></th>
+                        <!-- <th rowspan="2" class="th_5">安心保<br/>孝安心<br/>佑安心</th> -->
+                    </tr>
+                    <tr class="thead_2">
+                        <th :class="(fromLevel == '1' || fromLevel=='2')?'th_4':'th_4'">已核保<br/>已起保</th>
+                        <!-- <th :class="(fromLevel == '1' || fromLevel=='2')?'th_5':'th_4'">已核保<br/>未起保</th> -->
+                        <th :class="(fromLevel == '1' || fromLevel=='2')?'th_5':'th_5'">已核保<br/>月底起保</th>
+                        <th :class="(fromLevel == '1' || fromLevel=='2')?'th_6':'th_6'">已核保<br/>年底起保</th>
+                        <th :class="(fromLevel == '1' || fromLevel=='2')?'th_7':'th_7'">已核保<br/>次年及以后起保</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                  <tr :class="{'tr_0':index==0,'tatal_tr':true}" v-for="(item,index) in comInfo" :key="index">
+                      <td class="td_0" @click="getComInfo(item,index)">{{index==0?'合计':item.comName||item.salespersonName||item.siteName}}</td>
+                      <td class="td_1" v-if="fromLevel == '1' || fromLevel=='2'">{{item.goalCompletion}}</td>
+                      <td :class="(fromLevel == '1' || fromLevel=='2')?'td_2':'td_2'">{{item.yearPremiumIncome}}</td>
+                      <td :class="(fromLevel == '1' || fromLevel=='2')?'td_3':'td_3'">{{item.todaySumPremium}}</td>
+                      <td :class="(fromLevel == '1' || fromLevel=='2')?'td_4':'td_4'">{{item.isInsured}}</td>
+                      <!-- <td :class="(fromLevel == '1' || fromLevel=='2')?'td_7':'td_4'">{{item.notInsured}}</td> -->
+                      <td :class="(fromLevel == '1' || fromLevel=='2')?'td_5':'td_5'">{{item.notInsuredCurrentMonth}}</td>
+                      <td :class="(fromLevel == '1' || fromLevel=='2')?'td_6':'td_6'">{{item.notInsuredCurrentYear}}</td>
+                      <td :class="(fromLevel == '1' || fromLevel=='2')?'td_7':'td_7'">{{item.notInsuredNextYear}}</td>
+                      <!-- <td class="td_5">{{item.competitionPremium}}</td> -->
+                      <!-- <td class="td_3">{{item.handlingFee}}</td> -->
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>       
+</div>
+</body>
+</html>
+<style>
+.vux-confirm .weui-dialog__ft .weui-dialog__btn_primary{
+  color: #353535;
+}
+</style>
+
+<style>
+.table_scroll{
+  width: 100%;
+  overflow-x: scroll;
+}
+.weui-dialog__btn_primary{
+  color: #353535;
+}
+/* 右侧表格 */
+/* 头部 */
+/* .header_top{
+  width: 100%;
+  float: left;
+  position: fixed;
+  bottom: 0;
+  top: 250px;
+} */
+th{
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 15px;
+  height: 15px;
+  /* background: url('../../assets/images/th_img.png') 100%; */
+  /* background-image: linear-gradient(#f49f49, #eb943c,#dd7f36,#c9682f); */
+}
+thead{
+  background-color: #009D64;
+  /* background: url('../../assets/images/th_img.png') 100% 100%; */
+}
+.thead_tr th:first-child{
+  width: 11%;
+}
+.thead_tr span{
+  color: #ffffff;
+}
+.th_1{
+  width: 14%;
+  line-height: 14px;
+}
+.th_2{
+  width: 16%;
+  line-height: 14px;
+}
+.th_3{
+  width: 12%;
+  line-height: 14px;
+}
+.th_4{
+  width: 16%;
+  line-height: 14px;
+}
+.th_5{
+  width: 9%;
+  line-height: 14px;
+}
+.th_6{
+  width: 12%;
+  line-height: 14px;
+}
+.th_7{
+  width: 10%;
+  line-height: 14px;
+}
+.tr_0{
+  font-size: 8px;
+  font-weight: bold;
+  width: 100%;
+}
+.tatal_tr{
+  color: #2B2B2B;
+  /* font-weight: bold; */
+  font-size: 8px;
+  line-height: 0.4rem;
+  height: 0.4rem;
+  width: 100%;
+}
+/* td{
+  line-height: 0.4rem;
+  height: 0.4rem;
+} */
+.td_0{
+  width: 11%;
+  /* padding-right: 5px; */
+  /* word-break: break-all; */
+  table-layout: fixed;
+  /* line-height: 0.4rem;
+  height: 0.4rem; */
+}
+.td_1{
+  width: 14%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  /* line-height: 0.4rem;
+  height: 0.4rem; */
+  text-align: right;
+  /* display: inline-block; */
+}
+.td_2{
+  width: 16%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  /* line-height: 0.4rem;
+  height: 0.4rem; */
+  text-align: right;
+  /* display: inline-block; */
+}
+.td_3{
+  width: 12%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  /* line-height: 0.4rem;
+  height: 0.4rem; */
+  text-align: right;
+}
+.td_4{
+  width: 16%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  text-align: right;
+}
+.td_5{
+  width: 9%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  text-align: right;
+}
+.td_6{
+  width: 12%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  text-align: right;
+}
+.td_7{
+  width: 10%;
+  /* padding-right: 5px; */
+  table-layout: fixed;
+  text-align: right;
+}
+</style>
+

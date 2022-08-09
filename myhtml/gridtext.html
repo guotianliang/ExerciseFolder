@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .big-box-header>div{
+      background: skyblue;
+    }
+    .big-box-header{
+      gap:1px 1px;
+      display: grid;
+      width: 100%;
+      height: 50px;
+      margin-bottom: 1px;
+      grid-template-columns: repeat(4,1fr) 4fr;
+    }
+    .big-box-header .last-box{
+      display: flex;
+      background: transparent;
+      flex-direction: column;
+    }
+    .last-box-one{
+      background: skyblue;
+      height: 20px;
+      border: 1px solid #ffffff;
+    }
+    .last-box-two{
+      flex: 1;
+      gap: 1px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .big-box-body{
+      display: grid;
+      width: 100%;
+      height: 50px;
+      gap:1px;
+      grid-template-columns: repeat(4,1fr) 4fr;
+    }
+    .big-box-body .last-box-two{
+      background:transparent;
+    }
+    .last-box-two>div{
+      background: skyblue;
+    }
+    .big-box-body>div{
+      background: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="big-box-header">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div class="last-box">
+        <div class="last-box-one">5</div>
+        <div class="last-box-two">
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+        </div>
+      </div>
+  </div>
+  <div class="big-box-body">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div class="last-box-two">
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+    </div>
+  </div>
+</body>
+</html>
