@@ -1,1 +1,1 @@
-export const word = 'hello'
+export let word = 'hello'
