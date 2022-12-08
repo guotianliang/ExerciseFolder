@@ -4,7 +4,8 @@
     "private": true,
     "description": "git commitizen config",
     "scripts": {
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "test": "node test.js"
     },
     "devDependencies": {
         "@commitlint/config-conventional": "^17.3.0",
@@ -27,5 +28,11 @@
         "ffmpeg": "0.0.4",
         "jstracker": "^1.0.3",
         "shelljs": "^0.8.5"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "pre-push": "yarn && yarn build"
+        }
     }
 }

@@ -16,7 +16,7 @@ function foo(){
 const aa = foo.mycall(obj,123)
 console.log(aa)
 
-function myCall=function(obj,...args){
+myCall = function (obj,...args){
   const fn= Symbol('fn');
   obj[fn] = this;
   result = obj[fn](...args)

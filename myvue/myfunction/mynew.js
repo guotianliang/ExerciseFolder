@@ -34,10 +34,10 @@ function myNew(foo, ...args) {
     }
     let obj = new Object();
     obj.__proto__ = Object.create(ctor.prototype);
-    let res = ctor.apply(obj, ...args);
+    res = ctor.apply(obj, ...args);
 
     let isObject = typeof res === 'object' && typeof res !== null;
-    let isFunction = typoof res === 'function';
+    let isFunction = typeof res === 'function';
     return isObect || isFunction ? res : obj;
 };
 new Promise(reslove=>{
