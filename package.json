@@ -3,8 +3,20 @@
     "version": "0.0.0",
     "private": true,
     "description": "git commitizen config",
+    "scripts": {
+        "prepare": "husky install"
+    },
     "devDependencies": {
-        "cz-conventional-changelog": "^3.3.0"
+        "@commitlint/config-conventional": "^17.3.0",
+        "commitlint": "^17.3.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^8.29.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-vue": "^9.8.0",
+        "eslint-prettier": "0.0.0-empty",
+        "husky": "^8.0.2",
+        "lint-staged": "^13.1.0",
+        "prettier": "^2.8.1"
     },
     "config": {
         "commitizen": {
