@@ -1,38 +1,40 @@
 {
-    "name": "commitizen",
-    "version": "0.0.0",
-    "private": true,
-    "description": "git commitizen config",
-    "scripts": {
-        "prepare": "husky install",
-        "test": "node test.js"
-    },
-    "devDependencies": {
-        "@commitlint/config-conventional": "^17.3.0",
-        "commitlint": "^17.3.0",
-        "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.29.0",
-        "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-vue": "^9.8.0",
-        "eslint-prettier": "0.0.0-empty",
-        "husky": "^8.0.2",
-        "lint-staged": "^13.1.0",
-        "prettier": "^2.8.1"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "dependencies": {
-        "ffmpeg": "0.0.4",
-        "jstracker": "^1.0.3",
-        "shelljs": "^0.8.5"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "pre-push": "yarn && yarn build"
-        }
+  "name": "Folder",
+  "version": "0.0.0",
+  "private": true,
+  "description": "exerciseFolder",
+  "scripts": {
+    "prepare": "husky install",
+    "test": "node test.js",
+    "commit": "git cz"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.3.0",
+    "commitizen": "^4.2.6",
+    "commitlint": "^17.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.29.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.8.0",
+    "eslint-prettier": "0.0.0-empty",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "ffmpeg": "0.0.4",
+    "jstracker": "^1.0.3",
+    "shelljs": "^0.8.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn && yarn build"
+    }
+  }
 }
