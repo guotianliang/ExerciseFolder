@@ -1,5 +1,6 @@
 module.exports = {
-    parserPreset: 'conventional-changelog-conventionalcommits',
+    // parserPreset: 'conventional-changelog-conventionalcommits',
+    // extends: ['@commitlint/config-conventional'],
     rules: {
     // 'body-leading-blank': [1, 'always'],
     // 'body-max-line-length': [2, 'always', 100],
@@ -13,25 +14,25 @@ module.exports = {
     // ],
     // 'subject-empty': [2, 'never'],
     // 'subject-full-stop': [2, 'never', '.'],
-        'type-case': [2, 'always', 'lower-case'],
-        'type-empty': [2, 'never'],
-        'type-enum': [
-            2,
-            'always',
-            [
-                'build',
-                'chore',
-                'ci',
-                'docs',
-                'feat',
-                'fix',
-                'perf',
-                'refactor',
-                'revert',
-                'style',
-                'test'
-            ]
-        ]
+        'type-case': [2, 'always', 'lower-case']
+        // 'type-empty': [2, 'never']
+        // 'type-enum': [
+        //     2,
+        //     'always',
+        //     [
+        //         'build',
+        //         'chore',
+        //         'ci',
+        //         'docs',
+        //         'feat',
+        //         'fix',
+        //         'perf',
+        //         'refactor',
+        //         'revert',
+        //         'style',
+        //         'test'
+        //     ]
+        // ]
     },
     types: [
         { value: 'feat', name: 'feat:     A new feature', emoji: ':sparkles:' },
@@ -49,7 +50,7 @@ module.exports = {
     prompt: {
         settings: {},
         messages: {
-            skip: ':skip',
+            // skip: ':skip',
             max: 'upper %d chars',
             min: '%d chars at least',
             emptyWarning: 'can not be empty',
@@ -58,15 +59,15 @@ module.exports = {
         },
         questions: {
             type: {
-                description: "Select the type of change that you're committing:123",
+                description: "选择你要提交的类型",
                 enum: {
                     feat: {
-                        description: 'A new feature 123',
+                        description: '一个新功能✨',
                         title: 'Features',
                         emoji: '✨'
                     },
                     fix: {
-                        description: 'A bug fix',
+                        description: '一个bug',
                         title: 'Bug Fixes',
                         emoji: '🐛'
                     },
