@@ -1,21 +1,23 @@
 function fun(arg, callback) {
     try {
         // aaa()
-        callback(null, 'result')
+        callback(null, 'result');
     } catch (error) {
-        callback(error)
+        callback(error);
     }
-    console.log('fs ' + arg)
+    console.log('fs ' + arg);
 }
 
 // 回调方式
-fun('./index1.js', (err, data) => {console.log(err ? 'read err' : data)})
+fun('./index1.js', (err, data) => {
+    console.log(err ? 'read err' : data);
+});
 
 // promise方式
-const promisify = require('./promisify')
+const promisify = require('./promisify');
 // const { promisify } = require('util')
-const promise = promisify(fun)
-console.log(promise,"promise")
+const promise = promisify(fun);
+console.log(promise,"promise");
 // promise('./index2.js')
 //     .then(data => {
 //         console.log(data)
@@ -32,8 +34,8 @@ console.log(promise,"promise")
 // await方式
 setTimeout(async () => {
     try {
-        await promise('./abc.txt')
+        await promise('./abc.txt');
     } catch (error) {
-        console.log('catch err', error)
+        console.log('catch err', error);
     }
-})
+});

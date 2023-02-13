@@ -81,6 +81,7 @@ class Drag {
         //功能: 记录松手瞬间小球的速度
         if (!this.lastFly) {
             this.lastFly = ele.offsetLeft;
+            console.log(this.lastFly,"==this.lastFly")
             this.speedFly = 0;
             return;
         }

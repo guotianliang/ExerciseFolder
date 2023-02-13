@@ -6,24 +6,31 @@
   "scripts": {
     "prepare": "husky install",
     "test": "node test.js",
-    "commit": "git cz"
+    "commit-lint": "commit",
+    "commit": "npx git-cz",
+    "commitmsg": "commitlint -x @commitlint/config-conventional -E GIT_PARAMS"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/cz-commitlint": "^17.3.0",
+    "@commitlint/prompt-cli": "^17.3.0",
     "commitizen": "^4.2.6",
     "commitlint": "^17.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.8.0",
     "eslint-prettier": "0.0.0-empty",
+    "git-cz": "^4.9.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/git-cz"
     }
   },
   "dependencies": {

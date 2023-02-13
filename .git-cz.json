@@ -1,0 +1,75 @@
+{
+  "disableEmoji": false,
+  "format": "{emoji}{type}:{subject}",
+  "list": [
+    "feat",
+    "hotfix",
+    "fix",
+    "perf",
+    "refactor",
+    "docs",
+    "style",
+    "framework",
+    "other"
+  ],
+  "maxMessageLength": 200,
+  "minMessageLength": 1,
+  "questions": ["type", "subject"],
+  "scopes": [],
+  "types": {
+    "feat": {
+      "description": "新增、修改、删除功能",
+      "emoji": "✨",
+      "value": "feat"
+    },
+    "fix": {
+      "description": "修复需求BUG",
+      "emoji": "🐛",
+      "value": "fix"
+    },
+    "hotfix": {
+      "description": "修复在线BUG",
+      "emoji": "🚑",
+      "value": "hotfix"
+    },
+    "perf": {
+      "description": "性能优化",
+      "emoji": "🚀",
+      "value": "perf"
+    },
+    "refactor": {
+      "description": "代码优化、重构",
+      "emoji": "💡",
+      "value": "refactor"
+    },
+    "release": {
+      "description": "版本发布",
+      "emoji": "🎉",
+      "value": "release"
+    },
+    "style": {
+      "description": "代码格式优化",
+      "emoji": "🎨",
+      "value": "style"
+    },
+    "other": {
+      "description": "其他",
+      "emoji": "🔖",
+      "value": "other"
+    },
+    "framework": {
+      "description": "修改框架相关配置，引入、移除模块 等",
+      "emoji": "🔧",
+      "value": "framework"
+    },
+    "docs": {
+      "description": "新增、修改文档或修改注释",
+      "emoji": "📝",
+      "value": "docs"
+    }
+  },
+  "messages": {
+    "type": "选择提交类型",
+    "subject": "输入提交描述(请关联任务、缺陷 源码关键字)"
+  }
+}
